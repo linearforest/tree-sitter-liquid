@@ -1,9 +1,7 @@
 ======================
 String literal
 ======================
-
 {{ 'Hello' }}
-
 ---
 
 (template
@@ -14,9 +12,7 @@ String literal
 ======================
 Number literal
 ======================
-
 {{ 10 }}
-
 ---
 
 (template
@@ -27,9 +23,7 @@ Number literal
 ======================
 Boolean literal
 ======================
-
 {{ true }}
-
 ---
 
 (template
@@ -40,9 +34,7 @@ Boolean literal
 ======================
 Identifier with fields
 ======================
-
 {{ page.section.title }}
-
 ---
 
 (template
@@ -56,9 +48,7 @@ Identifier with fields
 ======================
 Identifier
 ======================
-
 {{ page }}
-
 ---
 
 (template
@@ -66,3 +56,19 @@ Identifier
     (code
       (identifier))))
 
+=======================
+Text Content
+=======================
+{% notice %}
+
+Hello {{ user }}, good after-noon!
+
+{% content %}
+---
+
+(template
+  (directive (code (identifier)))
+  (content)
+  (output_directive (code (identifier)))
+  (content)
+  (directive (code (identifier))))

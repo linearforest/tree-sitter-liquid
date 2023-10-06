@@ -8,8 +8,11 @@ module.exports = grammar({
       choice(
         $.directive,
         $.output_directive,
+        $.content,
       )
     ),
+
+    content: $ => prec.right(repeat1(choice(/[^{]+|\{/, '{%%'))),
 
     directive: $ => seq(
       choice("{%","{%-"),

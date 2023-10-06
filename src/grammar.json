@@ -14,8 +14,32 @@
           {
             "type": "SYMBOL",
             "name": "output_directive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "content"
           }
         ]
+      }
+    },
+    "content": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[^{]+|\\{"
+            },
+            {
+              "type": "STRING",
+              "value": "{%%"
+            }
+          ]
+        }
       }
     },
     "directive": {

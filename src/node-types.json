@@ -104,6 +104,11 @@
     }
   },
   {
+    "type": "content",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "directive",
     "named": true,
     "fields": {},
@@ -230,6 +235,10 @@
       "required": false,
       "types": [
         {
+          "type": "content",
+          "named": true
+        },
+        {
           "type": "directive",
           "named": true
         },
@@ -326,6 +335,10 @@
   },
   {
     "type": "{%",
+    "named": false
+  },
+  {
+    "type": "{%%",
     "named": false
   },
   {

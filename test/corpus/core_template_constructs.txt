@@ -1,9 +1,7 @@
 ========================
 Include tag (deprecated)
 ========================
-
 {% include 'hello.liquid' %}
-
 ---
 
 (template
@@ -15,9 +13,7 @@ Include tag (deprecated)
 ========================
 Render tag
 ========================
-
 {% render 'hello.liquid' %}
-
 ---
 
 (template
