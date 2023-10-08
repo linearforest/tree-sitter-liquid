@@ -99,6 +99,64 @@
     }
   },
   {
+    "type": "assignment",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "filter",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "include_expression",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "render_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "variable_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "binary_expression",
     "named": true,
     "fields": {},
@@ -168,6 +226,10 @@
       "types": [
         {
           "type": "access",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -476,6 +538,10 @@
           "named": true
         },
         {
+          "type": "assignment",
+          "named": true
+        },
+        {
           "type": "binary_expression",
           "named": true
         },
@@ -594,6 +660,10 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
     "type": "==",
     "named": false
   },
@@ -615,6 +685,10 @@
   },
   {
     "type": "and",
+    "named": false
+  },
+  {
+    "type": "assign",
     "named": false
   },
   {

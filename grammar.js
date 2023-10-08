@@ -21,7 +21,12 @@ module.exports = grammar({
   rules: {
     program: $ => repeat($._statement),
 
-    _statement: $ => choice($._control_flow, any_directive($._expression), $.comment),
+    _statement: $ => choice(
+      $._control_flow,
+      any_directive($._expression),
+      any_directive($.assignment),
+      $.comment
+    ),
 
     comment: $ => token(directive(/\s*#/, /[^#]+/)),
 
@@ -36,6 +41,14 @@ module.exports = grammar({
     number: $ => choice(/-?\d*\.?\d+/),
 
     boolean: $ => choice("true", "false"),
+
+     assignment: ($) =>
+      seq(
+        "assign",
+        field("variable_name", $.identifier),
+        "=",
+        field("value", $._expression)
+      ),
 
     _control_flow: $ => choice($.if_expression),
 
