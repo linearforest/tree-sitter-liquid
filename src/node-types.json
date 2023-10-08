@@ -91,7 +91,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "access",
@@ -103,6 +103,10 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -327,6 +331,10 @@
           "named": true
         },
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -443,6 +451,10 @@
   {
     "type": "and",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
   },
   {
     "type": "contains_operator",

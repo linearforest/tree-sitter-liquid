@@ -21,9 +21,9 @@ module.exports = grammar({
   rules: {
     program: $ => repeat($._statement),
 
-    _statement: $ => choice($._control_flow, any_directive($._expression)),
+    _statement: $ => choice($._control_flow, any_directive($._expression), $.comment),
 
-    comment: $ => token(choice(seq("{%", /\s#/, /[^%-]+/))),
+    comment: $ => token(directive(/\s*#/, /[^#]+/)),
 
     code: $ => repeat1(choice($._expression)),
 
