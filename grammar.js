@@ -41,6 +41,7 @@ module.exports = grammar({
 
     _expression: $ =>
       choice(
+        $.filter,
         $.identifier,
         $.include_expression,
         $.render_expression,
@@ -69,6 +70,26 @@ module.exports = grammar({
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9]*/,
 
     binary_operator: $ => choice("==", "!=", ">", "<", ">=", "<=", "or", "and"),
+
+    filter: $ => seq(
+      field("body", $._expression),
+      "|",
+      field("name", $.identifier),
+      optional(seq(":", $.argument_list)),
+    ),
+
+    argument_list: ($) =>
+      seq(
+        choice($._literal, $.identifier, $.argument),
+        repeat(seq(",", choice($._literal, $.identifier, $.argument)))
+      ),
+
+    argument: ($) =>
+      seq(
+        field("key", $.identifier),
+        ":",
+        field("value", choice($._literal, $.identifier))
+      ),
 
     // special case binary operator
     contains_operator: $ => "contains",

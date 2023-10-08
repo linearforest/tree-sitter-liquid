@@ -30,6 +30,75 @@
     }
   },
   {
+    "type": "argument",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binary_expression",
     "named": true,
     "fields": {},
@@ -55,6 +124,10 @@
         },
         {
           "type": "contains_operator",
+          "named": true
+        },
+        {
+          "type": "filter",
           "named": true
         },
         {
@@ -107,6 +180,10 @@
         },
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "filter",
           "named": true
         },
         {
@@ -178,6 +255,10 @@
             "named": true
           },
           {
+            "type": "filter",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -212,6 +293,74 @@
     }
   },
   {
+    "type": "filter",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "filter",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "include_expression",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "render_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_expression",
     "named": true,
     "fields": {
@@ -243,6 +392,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "filter",
             "named": true
           },
           {
@@ -335,6 +488,10 @@
           "named": true
         },
         {
+          "type": "filter",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -409,6 +566,10 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "-%}",
     "named": false
   },
@@ -418,6 +579,10 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
@@ -514,6 +679,10 @@
   },
   {
     "type": "{{-",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {
