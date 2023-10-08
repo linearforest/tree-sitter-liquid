@@ -1,74 +1,199 @@
-======================
-String literal
-======================
-{{ 'Hello' }}
----
+================================================================================
+Tags
+================================================================================
+{{ form }}
+{{- form -}}
+{{- form }}
+{{ form -}}
+{% form %}
+{%- form %}
+{% form -%}
+--------------------------------------------------------------------------------
 
-(template
-  (output_directive
-    (code
-      (string))))
+(program
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier)
+  (identifier))
 
-======================
-Number literal
-======================
-{{ 10 }}
----
+================================================================================
+Identifiers
+================================================================================
+{{ x }}
+--------------------------------------------------------------------------------
 
-(template
-  (output_directive
-    (code
-      (number))))
+(program
+  (identifier))
 
-======================
-Boolean literal
-======================
+================================================================================
+Literals
+================================================================================
+{{ 1 }}
+{{ "hello" }}
+{{ 'hello' }}
 {{ true }}
----
+{{ false }}
+--------------------------------------------------------------------------------
 
-(template
-  (output_directive
-    (code
-      (boolean))))
+(program
+  (number)
+  (string)
+  (string)
+  (boolean)
+  (boolean))
 
-======================
-Identifier with fields
-======================
-{{ page.section.title }}
----
+================================================================================
+Dot acccess
+================================================================================
+{{ product.title }}
+--------------------------------------------------------------------------------
 
-(template
-  (output_directive
-    (code
-      (selector_expression
-        operand: (identifier)
-        field: (identifier)
-        field: (identifier)))))
+(program
+  (access
+    (identifier)
+    (identifier)))
 
-======================
-Identifier
-======================
-{{ page }}
----
+================================================================================
+Array access
+================================================================================
+{{ pages['about-us'].url }}
+--------------------------------------------------------------------------------
 
-(template
-  (output_directive
-    (code
+(program
+  (access
+    (identifier)
+    (string)
+    (identifier)))
+
+================================================================================
+Boolean expressions
+================================================================================
+{% 1 == 1 %}
+{% x == y %}
+{% x.y.z == y %}
+{% x['y'].z == y %}
+{% y == x.y.z %}
+{% y == x['y'].z %}
+--------------------------------------------------------------------------------
+
+(program
+  (binary_expression
+    (number)
+    (binary_operator)
+    (number))
+  (binary_expression
+    (identifier)
+    (binary_operator)
+    (identifier))
+  (binary_expression
+    (access
+      (identifier)
+      (identifier)
+      (identifier))
+    (binary_operator)
+    (identifier))
+  (binary_expression
+    (access
+      (identifier)
+      (string)
+      (identifier))
+    (binary_operator)
+    (identifier))
+  (binary_expression
+    (identifier)
+    (binary_operator)
+    (access
+      (identifier)
+      (identifier)
+      (identifier)))
+  (binary_expression
+    (identifier)
+    (binary_operator)
+    (access
+      (identifier)
+      (string)
       (identifier))))
 
-=======================
-Text Content
-=======================
-{% notice %}
+================================================================================
+Control Flow / If
+================================================================================
+{% if 1 == 1 %}
+{% endif %}
+--------------------------------------------------------------------------------
 
-Hello {{ user }}, good after-noon!
+(program
+  (if_expression
+    (binary_expression
+      (number)
+      (binary_operator)
+      (number))))
 
-{% content %}
----
+================================================================================
+Control Flow / Else
+================================================================================
+{% if true %}
+{% else %}
+{% endif %}
+--------------------------------------------------------------------------------
 
-(template
-  (directive (code (identifier)))
-  (content)
-  (output_directive (code (identifier)))
-  (content)
-  (directive (code (identifier))))
+(program
+  (if_expression
+    (boolean)
+    (else_expression)))
+
+================================================================================
+Control Flow / Elseif
+================================================================================
+{% if 1 == x %}
+{% elseif 2 %}
+{% elseif 5 %}
+{% elseif 3 %}
+{% else %}
+{% endif %}
+--------------------------------------------------------------------------------
+
+(program
+  (if_expression
+    (binary_expression
+      (number)
+      (binary_operator)
+      (identifier))
+    (elseif_expression
+      (number))
+    (elseif_expression
+      (number))
+    (elseif_expression
+      (number))
+    (else_expression)))
+
+================================================================================
+Control Flow / If else nesting
+================================================================================
+{% if a %}
+  {% if b %}
+    {% if c %}
+      {{ c }}
+    {% endif %}
+  {% endif %}
+{% else %}
+  {{ d }}
+{% endif %}
+--------------------------------------------------------------------------------
+
+(program
+  (if_expression
+    (identifier)
+    (block
+      (if_expression
+        (identifier)
+        (block
+          (if_expression
+            (identifier)
+            (block
+              (identifier))))))
+    (else_expression
+      (block
+        (identifier)))))
