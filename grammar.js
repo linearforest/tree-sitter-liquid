@@ -60,7 +60,10 @@ module.exports = grammar({
         field("right", $._expression),
       ),
 
-    _control_flow: $ => choice($.if_expression),
+    _control_flow: $ => choice(
+      $.if_expression,
+      $.unless_expression,
+    ),
 
     _expression: $ =>
       choice(
@@ -141,6 +144,15 @@ module.exports = grammar({
         ),
       );
     },
+
+    unless_expression: $ =>
+      seq(
+        directive(seq("unless", field("condition", $._expression))),
+
+        field("consequence", alias(repeat($._statement), $.block)),
+
+        directive("endunless"),
+      ),
 
     if_expression: $ =>
       seq(

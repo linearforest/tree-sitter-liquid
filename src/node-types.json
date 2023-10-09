@@ -315,6 +315,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "unless_expression",
+          "named": true
         }
       ]
     }
@@ -634,6 +638,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "unless_expression",
+          "named": true
         }
       ]
     }
@@ -668,6 +676,64 @@
     "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "unless_expression",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "access",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "filter",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "include_expression",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "render_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "!=",
@@ -766,6 +832,10 @@
     "named": false
   },
   {
+    "type": "endunless",
+    "named": false
+  },
+  {
     "type": "false",
     "named": false
   },
@@ -791,6 +861,10 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "unless",
     "named": false
   },
   {
