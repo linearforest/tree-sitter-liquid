@@ -11,6 +11,15 @@ function directive(...args) {
   return seq(choice("{%", "{%-"), ...args, choice("%}", "-%}"));
 }
 
+const PREC = Object.fromEntries(
+  [
+    ["comparision_operator", "<", ">", "<=", ">=", "==", "!=", "contains"],
+    ["logical_operator", "and", "or"],
+  ]
+    .reverse()
+    .flatMap((ks, i) => ks.map(k => [k, i])),
+);
+
 module.exports = grammar({
   name: "liquid",
 
@@ -21,12 +30,13 @@ module.exports = grammar({
   rules: {
     program: $ => repeat($._statement),
 
-    _statement: $ => choice(
-      $._control_flow,
-      any_directive($._expression),
-      any_directive($.assignment),
-      $.comment
-    ),
+    _statement: $ =>
+      choice(
+        $._control_flow,
+        any_directive($._expression),
+        any_directive($.assignment),
+        $.comment,
+      ),
 
     comment: $ => token(directive(/\s*#/, /[^#]+/)),
 
@@ -42,12 +52,12 @@ module.exports = grammar({
 
     boolean: $ => choice("true", "false"),
 
-     assignment: ($) =>
+    assignment: $ =>
       seq(
         "assign",
-        field("variable_name", $.identifier),
+        field("left", $.identifier),
         "=",
-        field("value", $._expression)
+        field("right", $._expression),
       ),
 
     _control_flow: $ => choice($.if_expression),
@@ -82,30 +92,31 @@ module.exports = grammar({
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9]*/,
 
-    binary_operator: $ => choice("==", "!=", ">", "<", ">=", "<=", "or", "and"),
+    comparision_operator: $ =>
+      choice("==", "!=", ">", "<", ">=", "<=", "contains"),
 
-    filter: $ => seq(
-      field("body", $._expression),
-      "|",
-      field("name", $.identifier),
-      optional(seq(":", $.argument_list)),
-    ),
+    logical_operator: $ => choice("or", "and"),
 
-    argument_list: ($) =>
+    filter: $ =>
       seq(
-        choice($._literal, $.identifier, $.argument),
-        repeat(seq(",", choice($._literal, $.identifier, $.argument)))
+        field("body", $._expression),
+        "|",
+        field("name", $.identifier),
+        optional(seq(":", $.argument_list)),
       ),
 
-    argument: ($) =>
+    argument_list: $ =>
+      seq(
+        choice($._literal, $.identifier, $.argument),
+        repeat(seq(",", choice($._literal, $.identifier, $.argument))),
+      ),
+
+    argument: $ =>
       seq(
         field("key", $.identifier),
         ":",
-        field("value", choice($._literal, $.identifier))
+        field("value", choice($._literal, $.identifier)),
       ),
-
-    // special case binary operator
-    contains_operator: $ => "contains",
 
     include_expression: $ =>
       seq(field("include", "include"), field("included_file", $.string)),
@@ -113,11 +124,22 @@ module.exports = grammar({
     render_expression: $ =>
       seq(field("render", "render"), field("rendered_file", $.string)),
 
-    binary_expression: $ =>
-      choice(
-        prec.right(1, seq($._expression, $.binary_operator, $._expression)),
-        prec.right(1, seq($._expression, $.contains_operator, $.string)),
-      ),
+    binary_expression: $ => {
+      const productions = ["comparision_operator", "logical_operator"];
+
+      return choice(
+        ...productions.map(term =>
+          prec.left(
+            PREC[term],
+            seq(
+              field("left", $._expression),
+              field("operator", $[term]),
+              field("right", $._expression),
+            ),
+          ),
+        ),
+      );
+    },
 
     if_expression: $ =>
       seq(

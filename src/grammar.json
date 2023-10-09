@@ -320,7 +320,7 @@
         },
         {
           "type": "FIELD",
-          "name": "variable_name",
+          "name": "left",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -332,7 +332,7 @@
         },
         {
           "type": "FIELD",
-          "name": "value",
+          "name": "right",
           "content": {
             "type": "SYMBOL",
             "name": "_expression"
@@ -454,7 +454,7 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_][a-zA-Z0-9]*"
     },
-    "binary_operator": {
+    "comparision_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -481,6 +481,15 @@
           "type": "STRING",
           "value": "<="
         },
+        {
+          "type": "STRING",
+          "value": "contains"
+        }
+      ]
+    },
+    "logical_operator": {
+      "type": "CHOICE",
+      "members": [
         {
           "type": "STRING",
           "value": "or"
@@ -622,10 +631,6 @@
         }
       ]
     },
-    "contains_operator": {
-      "type": "STRING",
-      "value": "contains"
-    },
     "include_expression": {
       "type": "SEQ",
       "members": [
@@ -672,43 +677,67 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PREC_RIGHT",
+          "type": "PREC_LEFT",
           "value": 1,
           "content": {
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_expression"
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
               },
               {
-                "type": "SYMBOL",
-                "name": "binary_operator"
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "comparision_operator"
+                }
               },
               {
-                "type": "SYMBOL",
-                "name": "_expression"
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
               }
             ]
           }
         },
         {
-          "type": "PREC_RIGHT",
-          "value": 1,
+          "type": "PREC_LEFT",
+          "value": 0,
           "content": {
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_expression"
+                "type": "FIELD",
+                "name": "left",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
               },
               {
-                "type": "SYMBOL",
-                "name": "contains_operator"
+                "type": "FIELD",
+                "name": "operator",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "logical_operator"
+                }
               },
               {
-                "type": "SYMBOL",
-                "name": "string"
+                "type": "FIELD",
+                "name": "right",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
               }
             ]
           }

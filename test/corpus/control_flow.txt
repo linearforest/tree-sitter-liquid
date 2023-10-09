@@ -12,7 +12,7 @@ If
   (if_expression
     (binary_expression
       (number)
-      (binary_operator)
+      (comparision_operator)
       (number))))
 
 ================================================================================
@@ -47,17 +47,17 @@ Elseif
 
 (program
   (if_expression
-    (binary_expression
-      (number)
-      (binary_operator)
-      (identifier))
-    (elseif_expression
-      (number))
-    (elseif_expression
-      (number))
-    (elseif_expression
-      (number))
-    (else_expression)))
+    condition: (binary_expression
+      left: (number)
+      operator: (comparision_operator)
+      right: (identifier))
+    alternatives: (elseif_expression
+      condition: (number))
+    alternatives: (elseif_expression
+      condition: (number))
+    alternatives: (elseif_expression
+      condition: (number))
+    alternatives: (else_expression)))
 
 ================================================================================
 If else nesting
@@ -77,15 +77,15 @@ If else nesting
 
 (program
   (if_expression
-    (identifier)
-    (block
+    condition: (identifier)
+    consequence: (block
       (if_expression
-        (identifier)
-        (block
+        condition: (identifier)
+        consequence: (block
           (if_expression
-            (identifier)
-            (block
+            condition: (identifier)
+            consequence: (block
               (identifier))))))
-    (else_expression
-      (block
+    alternatives: (else_expression
+      consequence: (block
         (identifier)))))
