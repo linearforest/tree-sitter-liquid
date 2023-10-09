@@ -9,7 +9,8 @@ Assignment of literal
 (program
   (assignment
     (identifier)
-    (number)))
+    (number))
+  (content))
 
 ================================================================================
 Assignment of variable
@@ -24,7 +25,8 @@ Assignment of variable
     (identifier)
     (access
       (identifier)
-      (identifier))))
+      (identifier)))
+  (content))
 
 ================================================================================
 Assignment of filter
@@ -41,4 +43,5 @@ Assignment of filter
       (access
         (identifier)
         (identifier))
-      (identifier))))
+      (identifier)))
+  (content))

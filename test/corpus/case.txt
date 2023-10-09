@@ -1,0 +1,33 @@
+================================================================================
+Case
+================================================================================
+
+{% case variable %}
+  {% when first_value %}
+    first_expression
+  {% when second_value %}
+    second_expression
+  {% else %}
+    third_expression
+{% endcase %}
+
+--------------------------------------------------------------------------------
+
+(program
+  (ERROR
+    (identifier))
+  (identifier)
+  (ERROR
+    (identifier)
+    (identifier))
+  (identifier)
+  (content)
+  (ERROR
+    (identifier)
+    (identifier))
+  (identifier)
+  (content)
+  (identifier)
+  (content)
+  (identifier)
+  (content))

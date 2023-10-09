@@ -19,7 +19,8 @@ If
     consequence: (block
       (number)
       (number)
-      (number))))
+      (number)))
+  (content))
 
 ================================================================================
 If with empty body
@@ -35,7 +36,8 @@ If with empty body
     (binary_expression
       (number)
       (comparision_operator)
-      (number))))
+      (number)))
+  (content))
 
 ================================================================================
 If-else
@@ -56,7 +58,8 @@ If-else
       (number))
     alternatives: (else_expression
       consequence: (block
-        (number)))))
+        (number))))
+  (content))
 
 ================================================================================
 If-else with empty body
@@ -71,7 +74,8 @@ If-else with empty body
 (program
   (if_expression
     (boolean)
-    (else_expression)))
+    (else_expression))
+  (content))
 
 ================================================================================
 If-elseif
@@ -118,7 +122,8 @@ If-elseif
     (else_expression
       (block
         (number)
-        (number)))))
+        (number))))
+  (content))
 
 ================================================================================
 If-elseif with empty body
@@ -145,7 +150,8 @@ If-elseif with empty body
       condition: (number))
     alternatives: (elseif_expression
       condition: (number))
-    alternatives: (else_expression)))
+    alternatives: (else_expression))
+  (content))
 
 ================================================================================
 Nested statements
@@ -176,4 +182,5 @@ Nested statements
               (identifier))))))
     alternatives: (else_expression
       consequence: (block
-        (identifier)))))
+        (identifier))))
+  (content))

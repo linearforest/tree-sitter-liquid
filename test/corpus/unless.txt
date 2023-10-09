@@ -19,7 +19,8 @@ Unless
     consequence: (block
       (number)
       (number)
-      (number))))
+      (number)))
+  (content))
 
 ================================================================================
 Unless with empty body
@@ -35,4 +36,5 @@ Unless with empty body
     (binary_expression
       (number)
       (comparision_operator)
-      (number))))
+      (number)))
+  (content))

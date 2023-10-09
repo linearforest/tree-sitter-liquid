@@ -10,7 +10,8 @@ Equals
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Not Equals
@@ -24,7 +25,8 @@ Not Equals
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Greater than
@@ -38,7 +40,8 @@ Greater than
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Less than
@@ -52,7 +55,8 @@ Less than
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Greater than or equal
@@ -66,7 +70,8 @@ Greater than or equal
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Less than or equal
@@ -80,7 +85,8 @@ Less than or equal
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Contains
@@ -94,7 +100,8 @@ Contains
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Or
@@ -108,7 +115,8 @@ Or
   (binary_expression
     left: (identifier)
     operator: (logical_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 And
@@ -122,7 +130,8 @@ And
   (binary_expression
     left: (identifier)
     operator: (logical_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Contains
@@ -136,7 +145,8 @@ Contains
   (binary_expression
     left: (identifier)
     operator: (comparision_operator)
-    right: (identifier)))
+    right: (identifier))
+  (content))
 
 ================================================================================
 Operator precedence
@@ -156,4 +166,5 @@ Operator precedence
       (binary_expression
         (boolean)
         (logical_operator)
-        (boolean)))))
+        (boolean))))
+  (content))

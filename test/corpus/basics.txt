@@ -11,7 +11,6 @@ Tags
 {% form -%}
 --------------------------------------------------------------------------------
 
-
 (program
   (identifier)
   (identifier)
@@ -32,7 +31,8 @@ Comment
 
 (program
   (comment)
-  (comment))
+  (comment)
+  (content))
 
 ================================================================================
 Identifiers
@@ -43,7 +43,8 @@ Identifiers
 --------------------------------------------------------------------------------
 
 (program
-  (identifier))
+  (identifier)
+  (content))
 
 ================================================================================
 Literals
@@ -62,7 +63,8 @@ Literals
   (string)
   (string)
   (boolean)
-  (boolean))
+  (boolean)
+  (content))
 
 ================================================================================
 Dot acccess
@@ -75,7 +77,8 @@ Dot acccess
 (program
   (access
     (identifier)
-    (identifier)))
+    (identifier))
+  (content))
 
 ================================================================================
 Array access
@@ -89,4 +92,5 @@ Array access
   (access
     (identifier)
     (string)
-    (identifier)))
+    (identifier))
+  (content))

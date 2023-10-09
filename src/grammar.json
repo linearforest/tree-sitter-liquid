@@ -5,13 +5,50 @@
     "program": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "_statement"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "content"
+          }
+        ]
+      }
+    },
+    "content": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[^{]+|\\{"
+            },
+            {
+              "type": "STRING",
+              "value": "{%%"
+            },
+            {
+              "type": "STRING",
+              "value": "{{{"
+            }
+          ]
+        }
       }
     },
     "_statement": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "liquid_statement"
+        },
         {
           "type": "SYMBOL",
           "name": "_control_flow"
@@ -169,6 +206,123 @@
         {
           "type": "SYMBOL",
           "name": "comment"
+        }
+      ]
+    },
+    "liquid_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "{{"
+                },
+                {
+                  "type": "STRING",
+                  "value": "{{-"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "liquid"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "assignment"
+                    }
+                  ]
+                }
+              },
+              "named": true,
+              "value": "block"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "}}"
+                },
+                {
+                  "type": "STRING",
+                  "value": "-}}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "{%"
+                },
+                {
+                  "type": "STRING",
+                  "value": "{%-"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "liquid"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "assignment"
+                    }
+                  ]
+                }
+              },
+              "named": true,
+              "value": "block"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "%}"
+                },
+                {
+                  "type": "STRING",
+                  "value": "-%}"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

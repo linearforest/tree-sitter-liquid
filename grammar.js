@@ -28,15 +28,31 @@ module.exports = grammar({
   conflicts: $ => [],
 
   rules: {
-    program: $ => repeat($._statement),
+    program: $ => repeat(choice($._statement, $.content)),
+
+    content: $ => prec.right(repeat1(choice(/[^{]+|\{/, '{%%', '{{{'))),
 
     _statement: $ =>
       choice(
+        $.liquid_statement,
         $._control_flow,
         any_directive($._expression),
         any_directive($.assignment),
         $.comment,
       ),
+
+    liquid_statement: $ => any_directive(
+      'liquid',
+      alias(
+        repeat(
+          choice(
+            $._expression,
+            $.assignment,
+          )
+        ),
+        $.block,
+      )
+    ),
 
     comment: $ => token(directive(/\s*#/, /[^#]+/)),
 
@@ -74,7 +90,6 @@ module.exports = grammar({
         $.access,
         $.binary_expression,
         $._literal,
-        //TODO: add more expression types
       ),
 
     access: $ =>

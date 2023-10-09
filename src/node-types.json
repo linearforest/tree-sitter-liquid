@@ -305,6 +305,10 @@
           "named": true
         },
         {
+          "type": "liquid_statement",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -330,6 +334,11 @@
   },
   {
     "type": "comparision_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "content",
     "named": true,
     "fields": {}
   },
@@ -574,6 +583,21 @@
     }
   },
   {
+    "type": "liquid_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "logical_operator",
     "named": true,
     "fields": {}
@@ -612,6 +636,10 @@
           "named": true
         },
         {
+          "type": "content",
+          "named": true
+        },
+        {
           "type": "filter",
           "named": true
         },
@@ -625,6 +653,10 @@
         },
         {
           "type": "include_expression",
+          "named": true
+        },
+        {
+          "type": "liquid_statement",
           "named": true
         },
         {
@@ -852,6 +884,10 @@
     "named": false
   },
   {
+    "type": "liquid",
+    "named": false
+  },
+  {
     "type": "or",
     "named": false
   },
@@ -872,6 +908,10 @@
     "named": false
   },
   {
+    "type": "{%%",
+    "named": false
+  },
+  {
     "type": "{%-",
     "named": false
   },
@@ -881,6 +921,10 @@
   },
   {
     "type": "{{-",
+    "named": false
+  },
+  {
+    "type": "{{{",
     "named": false
   },
   {

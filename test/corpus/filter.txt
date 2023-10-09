@@ -11,7 +11,8 @@ One pipe
     (access
       (identifier)
       (identifier))
-    (identifier)))
+    (identifier))
+  (content))
 
 ================================================================================
 Multiple pipes
@@ -34,4 +35,5 @@ Multiple pipes
       (identifier))
     (identifier)
     (argument_list
-      (string))))
+      (string)))
+  (content))
