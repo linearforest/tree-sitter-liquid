@@ -127,9 +127,10 @@ module.exports = grammar({
     binary_expression: $ => {
       const productions = ["comparision_operator", "logical_operator"];
 
+      // https://shopify.dev/docs/api/liquid/basics#order-of-operations
       return choice(
         ...productions.map(term =>
-          prec.left(
+          prec.right(
             PREC[term],
             seq(
               field("left", $._expression),

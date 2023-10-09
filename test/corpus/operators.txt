@@ -142,24 +142,18 @@ Contains
 Operator precedence
 ================================================================================
 
-{% x == 1 and y == 2 or z == 3 %}
+{% true and false and false or true %}
 
 --------------------------------------------------------------------------------
 
 (program
   (binary_expression
-    left: (binary_expression
-      left: (binary_expression
-        left: (identifier)
-        operator: (comparision_operator)
-        right: (number))
-      operator: (logical_operator)
-      right: (binary_expression
-        left: (identifier)
-        operator: (comparision_operator)
-        right: (number)))
-    operator: (logical_operator)
-    right: (binary_expression
-      left: (identifier)
-      operator: (comparision_operator)
-      right: (number))))
+    (boolean)
+    (logical_operator)
+    (binary_expression
+      (boolean)
+      (logical_operator)
+      (binary_expression
+        (boolean)
+        (logical_operator)
+        (boolean)))))
