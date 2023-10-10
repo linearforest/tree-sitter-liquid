@@ -1,16 +1,5 @@
 const lf = "\n";
 
-function any_directive(...args) {
-  return choice(
-    seq(choice("{{", "{{-"), ...args, choice("}}", "-}}")),
-    seq(choice("{%", "{%-"), ...args, choice("%}", "-%}")),
-  );
-}
-
-function directive(...args) {
-  return seq(choice("{%", "{%-"), ...args, choice("%}", "-%}"));
-}
-
 const PREC = Object.fromEntries(
   [
     ["comparision_operator", "<", ">", "<=", ">=", "==", "!=", "contains"],
@@ -20,6 +9,7 @@ const PREC = Object.fromEntries(
     .flatMap((ks, i) => ks.map(k => [k, i])),
 );
 
+
 module.exports = grammar({
   name: "liquid",
 
@@ -27,34 +17,21 @@ module.exports = grammar({
 
   conflicts: $ => [],
 
-  rules: {
-    program: $ => repeat(choice($._statement, $.content)),
+  externals: $ => [
+    $.comment,
+  ],
 
-    content: $ => prec.right(repeat1(choice(/[^{]+|\{/, '{%%', '{{{'))),
+  extras: $ => [/\s/, $.comment],
+
+  rules: {
+    program: $ => repeat($._statement),
 
     _statement: $ =>
       choice(
-        $.liquid_statement,
         $._control_flow,
-        any_directive($._expression),
-        any_directive($.assignment),
-        $.comment,
+        $._expression,
+        $.assignment,
       ),
-
-    liquid_statement: $ => any_directive(
-      'liquid',
-      alias(
-        repeat(
-          choice(
-            $._expression,
-            $.assignment,
-          )
-        ),
-        $.block,
-      )
-    ),
-
-    comment: $ => token(directive(/\s*#/, /[^#]+/)),
 
     code: $ => repeat1(choice($._expression)),
 
@@ -76,10 +53,7 @@ module.exports = grammar({
         field("right", $._expression),
       ),
 
-    _control_flow: $ => choice(
-      $.if_expression,
-      $.unless_expression,
-    ),
+    _control_flow: $ => choice($.if_tag, $.unless_tag),
 
     _expression: $ =>
       choice(
@@ -108,7 +82,7 @@ module.exports = grammar({
         ),
       ),
 
-    identifier: $ => /[a-zA-Z_][a-zA-Z0-9]*/,
+    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     comparision_operator: $ =>
       choice("==", "!=", ">", "<", ">=", "<=", "contains"),
@@ -160,44 +134,40 @@ module.exports = grammar({
       );
     },
 
-    unless_expression: $ =>
+    unless_tag: $ =>
       seq(
-        directive(seq("unless", field("condition", $._expression))),
+        seq("unless", field("condition", $._expression)),
+        field("consequence", alias(repeat($._statement), $.block)),
+
+        "endunless",
+      ),
+
+    if_tag: $ =>
+      seq(
+        seq("if", field("condition", $._expression)),
 
         field("consequence", alias(repeat($._statement), $.block)),
 
-        directive("endunless"),
+        repeat(field("alternatives", $.elseif_tag)),
+
+        optional(field("alternatives", $.else_tag)),
+
+        "endif",
       ),
 
-    if_expression: $ =>
-      seq(
-        directive(seq("if", field("condition", $._expression))),
-
-        field("consequence", alias(repeat($._statement), $.block)),
-
-        repeat(field("alternatives", $.elseif_expression)),
-
-        optional(field("alternatives", $.else_expression)),
-
-        directive("endif"),
-      ),
-
-    elseif_expression: $ =>
+    elseif_tag: $ =>
       prec.left(
         1,
         seq(
-          directive(seq("elseif", field("condition", $._expression))),
+          seq("elseif", field("condition", $._expression)),
           field("consequence", alias(repeat($._statement), $.block)),
         ),
       ),
 
-    else_expression: $ =>
+    else_tag: $ =>
       prec.left(
         1,
-        seq(
-          directive("else"),
-          field("consequence", alias(repeat($._statement), $.block)),
-        ),
+        seq("else", field("consequence", alias(repeat($._statement), $.block))),
       ),
   },
 });

@@ -1,0 +1,30 @@
+================================================================================
+Inline comment at the end of the line
+================================================================================
+
+assign product = "New Product Name" # set the product name
+
+--------------------------------------------------------------------------------
+
+(program
+  (assignment
+    (identifier)
+    (string))
+  (comment))
+
+================================================================================
+Comment on a separate line
+================================================================================
+
+# set the product name
+assign product = "New Product Name"
+# do something else
+
+--------------------------------------------------------------------------------
+
+(program
+  (comment)
+  (assignment
+    (identifier)
+    (string))
+  (comment))

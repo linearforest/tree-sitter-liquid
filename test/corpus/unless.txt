@@ -11,16 +11,27 @@ Unless
 --------------------------------------------------------------------------------
 
 (program
-  (unless_expression
-    condition: (binary_expression
-      left: (number)
-      operator: (comparision_operator)
-      right: (number))
-    consequence: (block
+  (ERROR
+    (UNEXPECTED '{'))
+  (unless_tag
+    (binary_expression
       (number)
+      (comparision_operator)
+      (number))
+    (ERROR
+      (UNEXPECTED '%'))
+    (block
       (number)
-      (number)))
-  (content))
+      (ERROR
+        (UNEXPECTED '}'))
+      (number)
+      (ERROR
+        (UNEXPECTED '}'))
+      (number))
+    (ERROR
+      (UNEXPECTED '}')))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Unless with empty body
@@ -32,9 +43,14 @@ Unless with empty body
 --------------------------------------------------------------------------------
 
 (program
-  (unless_expression
+  (ERROR
+    (UNEXPECTED '{'))
+  (unless_tag
     (binary_expression
       (number)
       (comparision_operator)
-      (number)))
-  (content))
+      (number))
+    (ERROR
+      (UNEXPECTED '%')))
+  (ERROR
+    (UNEXPECTED '%')))

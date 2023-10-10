@@ -15,19 +15,31 @@ Case
 
 (program
   (ERROR
-    (identifier))
+    (UNEXPECTED '{'))
+  (identifier)
   (identifier)
   (ERROR
-    (identifier)
-    (identifier))
+    (UNEXPECTED '%'))
   (identifier)
-  (content)
+  (identifier)
   (ERROR
-    (identifier)
-    (identifier))
+    (UNEXPECTED '%'))
   (identifier)
-  (content)
+  (ERROR
+    (UNEXPECTED '{'))
   (identifier)
-  (content)
   (identifier)
-  (content))
+  (ERROR
+    (UNEXPECTED '%'))
+  (identifier)
+  (ERROR
+    (UNEXPECTED '{'))
+  (identifier)
+  (ERROR
+    (UNEXPECTED '%'))
+  (identifier)
+  (ERROR
+    (UNEXPECTED '{'))
+  (identifier)
+  (ERROR
+    (UNEXPECTED '%')))

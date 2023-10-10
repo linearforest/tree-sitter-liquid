@@ -16,4 +16,54 @@ Liquid tag
 -%}
 --------------------------------------------------------------------------------
 
-()
+(program
+  (ERROR
+    (UNEXPECTED '{')
+    (trim))
+  (identifier)
+  (assignment
+    (identifier)
+    (identifier))
+  (ERROR)
+  (access
+    (identifier)
+    (identifier)
+    (identifier))
+  (ERROR)
+  (assignment
+    (identifier)
+    (number))
+  (if_tag
+    (access
+      (identifier)
+      (identifier)
+      (identifier))
+    (block
+      (assignment
+        (identifier)
+        (number))))
+  (assignment
+    (identifier)
+    (boolean))
+  (if_tag
+    (binary_expression
+      (access
+        (identifier)
+        (identifier))
+      (ERROR
+        (UNEXPECTED '?'))
+      (logical_operator)
+      (binary_expression
+        (access
+          (identifier)
+          (identifier)
+          (identifier))
+        (comparision_operator)
+        (number)))
+    (block
+      (assignment
+        (identifier)
+        (boolean))))
+  (ERROR
+    (trim)
+    (UNEXPECTED '%')))

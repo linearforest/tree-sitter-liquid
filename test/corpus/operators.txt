@@ -7,11 +7,14 @@ Equals
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Not Equals
@@ -22,11 +25,14 @@ Not Equals
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Greater than
@@ -37,11 +43,14 @@ Greater than
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Less than
@@ -52,11 +61,14 @@ Less than
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Greater than or equal
@@ -67,11 +79,14 @@ Greater than or equal
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Less than or equal
@@ -82,11 +97,14 @@ Less than or equal
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Contains
@@ -97,11 +115,14 @@ Contains
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Or
@@ -112,11 +133,14 @@ Or
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (logical_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (logical_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 And
@@ -127,11 +151,14 @@ And
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (logical_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (logical_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Contains
@@ -142,11 +169,14 @@ Contains
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
-    left: (identifier)
-    operator: (comparision_operator)
-    right: (identifier))
-  (content))
+    (identifier)
+    (comparision_operator)
+    (identifier))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Operator precedence
@@ -157,6 +187,8 @@ Operator precedence
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (binary_expression
     (boolean)
     (logical_operator)
@@ -167,4 +199,5 @@ Operator precedence
         (boolean)
         (logical_operator)
         (boolean))))
-  (content))
+  (ERROR
+    (UNEXPECTED '%')))

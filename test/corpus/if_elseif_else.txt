@@ -2,101 +2,117 @@
 If
 ================================================================================
 
-{% if 1 == 1 %}
-  {{ 1 }}
-  {{ 2 }}
-  {{ 3 }}
-{% endif %}
+if 1 == 1
+  1
+  2
+  3
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
-    condition: (binary_expression
-      left: (number)
-      operator: (comparision_operator)
-      right: (number))
-    consequence: (block
+  (if_tag
+    (binary_expression
+      (number)
+      (comparision_operator)
+      (number))
+    (block
       (number)
       (number)
-      (number)))
-  (content))
+      (number))))
+
+================================================================================
+If with consequence on the same line
+================================================================================
+
+if 1 == 1 1 2 3
+endif
+
+--------------------------------------------------------------------------------
+
+(program
+  (if_tag
+    (binary_expression
+      (number)
+      (comparision_operator)
+      (number))
+    (block
+      (number)
+      (number)
+      (number))))
 
 ================================================================================
 If with empty body
 ================================================================================
 
-{% if 1 == 1 %}
-{% endif %}
+if 1 == 1
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
+  (if_tag
     (binary_expression
       (number)
       (comparision_operator)
-      (number)))
-  (content))
+      (number))))
 
 ================================================================================
 If-else
 ================================================================================
 
-{% if true %}
- {{ 1 }}
-{% else %}
- {{ 1 }}
-{% endif %}
+if true
+ 1
+else
+ 1
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
-    condition: (boolean)
-    consequence: (block
+  (if_tag
+    (boolean)
+    (block
       (number))
-    alternatives: (else_expression
-      consequence: (block
-        (number))))
-  (content))
+    (else_tag
+      (block
+        (number)))))
 
 ================================================================================
 If-else with empty body
 ================================================================================
 
-{% if true %}
-{% else %}
-{% endif %}
+if true
+else
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
+  (if_tag
     (boolean)
-    (else_expression))
-  (content))
+    (else_tag)))
 
 ================================================================================
 If-elseif
 ================================================================================
 
-{% if 1 == x %}
-  {{ 1 }} {{ 2 }}
-{% elseif 2 %}
-  {{ 1 }} {{ 2 }}
-{% elseif 5 %}
-  {{ 1 }} {{ 2 }}
-{% elseif 3 %}
-  {{ 1 }} {{ 2 }}
-{% else %}
-  {{ 1 }} {{ 2 }}
-{% endif %}
+if 1 == x
+  1 2
+elseif 2
+  1 2
+elseif 5
+  1 2
+elseif 3
+  1 2
+else
+  1 2
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
+  (if_tag
     (binary_expression
       (number)
       (comparision_operator)
@@ -104,83 +120,80 @@ If-elseif
     (block
       (number)
       (number))
-    (elseif_expression
+    (elseif_tag
       (number)
       (block
         (number)
         (number)))
-    (elseif_expression
+    (elseif_tag
       (number)
       (block
         (number)
         (number)))
-    (elseif_expression
+    (elseif_tag
       (number)
       (block
         (number)
         (number)))
-    (else_expression
+    (else_tag
       (block
         (number)
-        (number))))
-  (content))
+        (number)))))
 
 ================================================================================
 If-elseif with empty body
 ================================================================================
 
-{% if 1 == x %}
-{% elseif 2 %}
-{% elseif 5 %}
-{% elseif 3 %}
-{% else %}
-{% endif %}
+if 1 == x
+elseif 2
+elseif 5
+elseif 3
+else
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
-    condition: (binary_expression
-      left: (number)
-      operator: (comparision_operator)
-      right: (identifier))
-    alternatives: (elseif_expression
-      condition: (number))
-    alternatives: (elseif_expression
-      condition: (number))
-    alternatives: (elseif_expression
-      condition: (number))
-    alternatives: (else_expression))
-  (content))
+  (if_tag
+    (binary_expression
+      (number)
+      (comparision_operator)
+      (identifier))
+    (elseif_tag
+      (number))
+    (elseif_tag
+      (number))
+    (elseif_tag
+      (number))
+    (else_tag)))
 
 ================================================================================
 Nested statements
 ================================================================================
 
-{% if a %}
-  {% if b %}
-    {% if c %}
-      {{ c }}
-    {% endif %}
-  {% endif %}
-{% else %}
-  {{ d }}
-{% endif %}
+if a
+  if b
+    if c
+      c
+    endif
+  endif
+else
+  d
+endif
 
 --------------------------------------------------------------------------------
 
 (program
-  (if_expression
-    condition: (identifier)
-    consequence: (block
-      (if_expression
-        condition: (identifier)
-        consequence: (block
-          (if_expression
-            condition: (identifier)
-            consequence: (block
+  (if_tag
+    (identifier)
+    (block
+      (if_tag
+        (identifier)
+        (block
+          (if_tag
+            (identifier)
+            (block
               (identifier))))))
-    alternatives: (else_expression
-      consequence: (block
-        (identifier))))
-  (content))
+    (else_tag
+      (block
+        (identifier)))))

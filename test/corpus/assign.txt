@@ -7,10 +7,13 @@ Assignment of literal
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (assignment
     (identifier)
     (number))
-  (content))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Assignment of variable
@@ -21,12 +24,15 @@ Assignment of variable
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (assignment
     (identifier)
     (access
       (identifier)
       (identifier)))
-  (content))
+  (ERROR
+    (UNEXPECTED '%')))
 
 ================================================================================
 Assignment of filter
@@ -37,6 +43,8 @@ Assignment of filter
 --------------------------------------------------------------------------------
 
 (program
+  (ERROR
+    (UNEXPECTED '{'))
   (assignment
     (identifier)
     (filter
@@ -44,4 +52,5 @@ Assignment of filter
         (identifier)
         (identifier))
       (identifier)))
-  (content))
+  (ERROR
+    (UNEXPECTED '%')))
